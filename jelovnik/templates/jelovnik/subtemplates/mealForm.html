@@ -1,0 +1,53 @@
+<form>
+    <div class="menu-form">
+        <div class="row" style="margin-left: 0; margin-right: 0" >
+            <button type="button" class="delBtn btn btn-outline-danger btn-sm" onclick="delMealType(this)" >Ukloni meni</button>
+
+            <button type="button" class="up-downBtn btn btn-outline-info btn-sm" onclick="moveUp(this)" >&#x25B2;</button>
+            <button type="button" class="up-downBtn btn btn-outline-info btn-sm" onclick="moveDown(this)" >&#x25BC;</button>
+        </div>
+        <div class="header">
+            <div class="autocomplete">
+                <div>
+                    <input type="text" id="search" placeholder="Vrsta menija" oninput="mealTypeAutocomplete(this, this.value)">
+                </div>
+                <div id="match-list" class="autocomplete-items"></div>
+            </div>
+
+        </div>
+        <div class="Dish-list" id="Dish-list">
+            <table id="Dish-list-table">
+                <tr><td>
+                    <div class="autocomplete">
+                        <div>
+                            <input type="text" id="search" class="input" placeholder="Naziv jela" oninput="dishAutocomplete(this, this.value)">
+                        </div>
+                        <div id="match-list" class="autocomplete-items"></div>
+                    </div>
+                </td><td><span onclick="delDish(this)">&#10006;</span></td>
+                </tr>
+                <tr><td>
+                    <div class="autocomplete">
+                        <div>
+                            <input type="text" id="search" class="input" placeholder="Naziv jela" oninput="dishAutocomplete(this, this.value)">
+                        </div>
+                        <div id="match-list" class="autocomplete-items"></div>
+                    </div>
+                </td><td><span onclick="delDish(this)">&#10006;</span></td>
+                </tr>
+                <tr><td>
+                    <div class="autocomplete">
+                        <div>
+                            <input type="text" id="search" class="input" placeholder="Naziv jela" oninput="dishAutocomplete(this, this.value)">
+                        </div>
+                        <div id="match-list" class="autocomplete-items"></div>
+                    </div>
+                </td><td><span onclick="delDish(this)">&#10006;</span></td>
+                </tr>
+            </table>
+
+
+            <button type="button" class="addDishBtn btn btn-outline-success btn-sm" id="addDishBtn" onclick="addDish(this)">Dodaj jelo</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,85 @@
+.nav-logo{
+    padding-right: 16px;
+    /*border-right: 3px solid #d3d3d3;*/
+    font-weight: bolder;
+}
+
+.navbar-collapse{
+    border-left: 3px solid #d3d3d3;
+}
+
+.nav-link{
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.nav-item{
+    padding-left: 16px;
+}
+
+
+.container-fluid{
+    margin-top: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    /*margin-right: 3%;*/
+}
+
+
+.meni-table{
+    border: 3px solid #d4d4d4;
+}
+
+.meni-name{
+    text-align: center;
+}
+
+.vrijeme{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+
+/*footer*/
+html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    display: table;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+}
+
+
+.wrapper{
+    padding: 20px;
+    height: auto;
+}
+
+
+footer{
+    display:table-row;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+    /*clear: both;*/
+    /*position: relative;*/
+    /*height: 200px;*/
+    /*margin-top: -200px;*/
+}
+
+.site-footer{
+    background-color: #e6e6e6;
+    color: #0e79bc;
+    margin-top: 30px;
+    padding-top: 30px;
+}
+
+.bottom-footer{
+    border-top: 1px solid #2f2f30;
+    margin-top: 10px;
+    padding-top: 10px;
+}

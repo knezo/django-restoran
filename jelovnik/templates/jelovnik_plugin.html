@@ -1,0 +1,66 @@
+{% load static %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<style>
+    .plugin{
+        border: 3px solid #e6e6e6;
+    }
+
+    .title{
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #0c0547;
+        font-weight: 600;
+    }
+
+    .meni-table{
+        border: 3px solid #d4d4d4;
+    }
+
+
+</style>
+
+<div class="container-fluid plugin" onclick="location.href='http://127.0.0.1:8000/jelovnik/';">
+
+
+    <div class="title" style="text-align: center">
+{#        <img src="{% static 'jelovnik/img/riteh_logo.jpg' %}" width="50px">#}
+        <span style="font-size: 24px;">Bistro Riteh - današnja ponuda:</span>
+
+    </div>
+
+    <div class="container-fluid wrapper">
+
+        <div class="row">
+        {% if not MealTypes %}
+            <div class="col-xl">
+                <h4>Za današnji datum ne postoji jelovnik.</h4>
+            </div>
+        {% else %}
+            {% for meal in MealTypes %}
+                <div class="col-md">
+                <table class="table meni-table">
+                    <thead class="thead-dark meni-name">
+                        <tr><th>{{ meal.name }}</th></tr>
+                    </thead>
+
+                    <tbody>
+                {% for dish in Dishes %}
+                    {% if dish.mealTypeOnMenu == meal %}
+                        <tr><td>{{ dish.name }}</td></tr>
+                    {% endif %}
+                {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+{#</a>#}
+</div>

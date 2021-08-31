@@ -1,0 +1,123 @@
+{% load staticfiles %}
+{% load cms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Jelovnik</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'jelovnik/index.css' %}">
+
+    <style>
+        nav, footer{
+            color: #1d92ab;
+        }
+    </style>
+
+</head>
+<body onload="makeHref('{{ date }}')">
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand nav-logo" href="/jelovnik/"><img src="{% static 'jelovnik/img/riteh_logo.jpg' %}" width="60px"> Bistro Riteh</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="pon" href="#">Pon</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="uto" href="#">Uto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="sri" href="#">Sri</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="cet" href="#">Čet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pet" href="#">Pet</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="vrijeme">
+        <h4>Jelovnik za datum: <span id="datum" style="font-weight: 700"></span></h4>
+    </div>
+
+    <div class="container-fluid wrapper">
+
+        <div class="row">
+        {% if not MealTypes %}
+            <div class="col-xl">
+                <h4>Za traženi datum ne postoji jelovnik.</h4>
+            </div>
+        {% else %}
+            {% for meal in MealTypes %}
+                <div class="col-xl">
+                <table class="table meni-table">
+                    <thead class="thead-dark meni-name">
+                        <tr><th>{{ meal.name }}</th></tr>
+                    </thead>
+
+                    <tbody>
+                {% for dish in Dishes %}
+                    {% if dish.mealTypeOnMenu == meal %}
+                        <tr><td>{{ dish.name }}</td></tr>
+                    {% endif %}
+                {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+
+
+<footer class="site-footer">
+
+    <div class="container wrapper">
+        <div class="row">
+            <div class="col" style="text-align: center">
+                <h5>Bistro Riteh - Saznajte tjednu ponudu menija.</h5>
+            </div>
+        </div>
+        <div class="row bottom-footer">
+            <div class="col-md-6">
+                <ul>
+                    <li>Radno vrijeme: pon - pet, 7:30 - 16:30</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    <li>Adresa: Vukovarska 58, 51000 Rijeka</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row" style="background-color: #dfdfdf">
+            <div class="col" style="text-align: center">
+                Za uređivanje:
+                <a href="{% url 'user_login' %}" style="color: #343a40"> Administracija</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'jelovnik/index.js' %}"></script>
+</body>
+</html>

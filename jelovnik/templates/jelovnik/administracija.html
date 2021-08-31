@@ -1,0 +1,151 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Administracija</title>
+
+    <meta charset="UTF-8">
+
+    {% include 'jelovnik/subtemplates/headBootstrap.html' %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'jelovnik/autocomplete.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'jelovnik/administracija.css' %}">
+
+
+</head>
+<body onload="loadFunc()">
+
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+{#            <li class="nav-item">#}
+{#                <a class="nav-link" href="#">Jelovnik <span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+            <li class="nav-item active">
+                <span class="nav-link" style="font-size: 18px" href="#">Administracija</span>
+            </li>
+{#            <li class="nav-item active">#}
+{#                <p class="nav-link">Prijavljeni ste kao: {{ user.username }}</p>#}
+{#            </li>#}
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'user_logout' %}">
+            {% csrf_token %}
+            <span class="nav-link" style="color: white">Prijavljeni ste kao: {{ user.username }}</span>
+{#          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
+            <button class="btn btn-success my-2 my-sm-0" type="submit" value="Logout">Odjava</button>
+
+        </form>
+        </div>
+
+    </nav>
+
+
+    <div class="container-fluid">
+
+        <div class="row row-buttons">
+            <div class="col-md-3"><a id="thisWeekMenu" href="{% url 'stvori_meni' %}"><button class="btn btn-primary">Stvori/uredi meni za tekući tjedan</button></a></div>
+            <div class="col-md-3"><a id="nextWeekMenu" href="{% url 'stvori_meni' %}"><button class="btn btn-primary">Stvori/uredi meni za idući tjedan</button></a></div>
+        </div>
+
+        <form method="get" action="{% url 'uredi_predlozak' %}">
+            <div class="row row-buttons">
+
+                <div class="col-md-5">
+                    <select class="browser-default custom-select" name="predlozak" required>
+                        <option value="" disabled selected>Izaberi predložak za uređivanje</option>
+                        <option value="1">Predložak 1</option>
+                        <option value="2">Predložak 2</option>
+                        <option value="3">Predložak 3</option>
+                        <option value="4">Predložak 4</option>
+                        <option value="5">Predložak 5</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-info">Uredi tjedni predložak</button>
+                </div>
+            </div>
+        </form>
+
+    <!-- Data base, Dish and MealType -->
+    <div class="row row-database" style="margin: 4%">
+
+    <!-- Dish -->
+        <div class="col-md">
+
+        <!-- Dodavanje novog jela (Dish) u bazu -->
+            <p>Dodaj novo jelo u bazu jela:</p>
+
+            <div id="unos_jela">
+                <form action="./dodajJelo/" method="POST">
+                    {% csrf_token %}
+                    {{ formDish.as_p }}
+                    <input type="submit" class="btn btn-success" value="Dodaj!">
+                </form>
+            </div>
+
+        <!-- ispis jela iz baze -->
+            <div>
+                <h4>Jela u bazi:</h4>
+                <table class="table table-sm table-bordered table-striped">
+                    {% for dish in allDishes %}
+                        <tr>
+                            <td>{{ forloop.counter }}.</td>
+                            <td>{{ dish.name }}</td>
+                            <td style="text-align: center">
+                                <form action="./ukloniJelo/" method="POST">
+                                    {% csrf_token %}
+                                    <input type="text" name="id" value="{{ dish.id }}" hidden>
+                                    <input type="submit" class="btn btn-outline-danger btn-sm" value="Ukloni">
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    <!-- MealType -->
+        <div class="col-md">
+
+        <!-- Dodavanje novog menija (MealType) u bazu -->
+            <p>Dodaj novu vrstu menija u bazu:</p>
+
+            <div id="unos_menija">
+                <form action="./dodajMeni/" method="POST">
+                    {% csrf_token %}
+                    {{ formMealType.as_p }}
+                    <input type="submit" class="btn btn-success" value="Dodaj!">
+                </form>
+            </div>
+        <!-- ispis MealType iz baze -->
+            <div>
+                <h4>Vrste menija u bazi:</h4>
+                <table class="table table-sm table-bordered table-striped">
+                    {% for meal in allMealTypes %}
+                        <tr>
+                            <td>{{ forloop.counter }}.</td>
+                            <td>{{ meal.name }}</td>
+                            <td style="text-align: center">
+                                <form action="./ukloniMeni/" method="POST">
+                                    {% csrf_token %}
+                                    <input type="text" name="id" value="{{ meal.id }}" hidden>
+                                    <input type="submit" class="btn btn-outline-danger btn-sm" value="Ukloni">
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script src="{% static 'jelovnik/autocomplete.js' %}"></script>
+    <script src="{% static 'jelovnik/administracija.js' %}"></script>
+
+</body>
+</html>

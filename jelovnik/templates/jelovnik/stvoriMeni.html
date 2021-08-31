@@ -1,0 +1,147 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novi jelovnik</title>
+
+    {% include 'jelovnik/subtemplates/headBootstrap.html' %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'jelovnik/stvoriMeni.css' %}">
+    <script src="{% static 'jelovnik/stvoriMeni.js' %}"></script>
+    <script src="{% static 'jelovnik/submitForms.js' %}"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'jelovnik/autocomplete.css' %}">
+    <script src="{% static 'jelovnik/autocomplete.js' %}"></script>
+
+
+</head>
+<body onload="load()">
+
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <span class="nav-link" style="font-size: 18px" href="#">Administracija</span>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+
+    <div class="row">
+        <div class="col-md">
+        <a href="{% url 'administracija' %}"><button type="button" class="btn btn-secondary povratakBtn">Povratak</button></a>
+        </div>
+        <div class="col-md">
+        <p class="time">
+            Današnji datum: <strong id="date"></strong><br>
+            Vrijeme: <strong id="time"></strong>
+        </p>
+        </div>
+    </div>
+
+        <div class="row row-buttons">
+
+            <div class="col-md-3">
+                <select class="browser-default custom-select" id="predlozak" name="predlozak" required>
+                    <option value="" disabled selected>Izaberi predložak</option>
+                    <option value="1">Predložak 1</option>
+                    <option value="2">Predložak 2</option>
+                    <option value="3">Predložak 3</option>
+                    <option value="4">Predložak 4</option>
+                    <option value="5">Predložak 5</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <button type="button" class="btn btn-info" onclick="useTemplate()">Koristi predložak</button>
+            </div>
+        </div>
+
+
+    <h3 class="title">Stvori/uredi meni:</h3>
+
+    <button id="submitBtn" class="btn btn-primary btn-lg" onclick="submitForms()">Objavi tjedni meni!</button>
+
+
+
+    <div class="row row-menu">
+
+        <div class="col-lg menu-day" id="pon-menu-day">
+            <h4>Ponedjeljak, <span id="pon"></span></h4>
+
+            {% if mealTypes1 %}
+                {% for mealType in mealTypes1 %}
+                    {% include 'jelovnik/subtemplates/meal.html' %}
+                {% endfor %}
+            {% else %}
+                {% include 'jelovnik/subtemplates/mealForm.html' %}
+            {% endif %}
+
+            <button id="addMealTypeBtn" class="addMealTypeBtn btn btn-success" onclick="addNewMealType(this)">Dodaj meni</button>
+        </div>
+
+        <div class="col-lg menu-day" id="uto-menu-day">
+            <h4>Utorak, <span id="uto"></span></h4>
+
+            {% if mealTypes2 %}
+                {% for mealType in mealTypes2 %}
+                    {% include 'jelovnik/subtemplates/meal.html' %}
+                {% endfor %}
+            {% else %}
+                {% include 'jelovnik/subtemplates/mealForm.html' %}
+            {% endif %}
+
+
+            <button id="addMealTypeBtn" class="addMealTypeBtn btn btn-success" onclick="addNewMealType(this)">Dodaj meni</button>
+        </div>
+
+        <div class="col-lg menu-day" id="sri-menu-day">
+            <h4>Srijeda, <span id="sri"></span></h4>
+
+            {% if mealTypes3 %}
+                {% for mealType in mealTypes3 %}
+                    {% include 'jelovnik/subtemplates/meal.html' %}
+                {% endfor %}
+            {% else %}
+                {% include 'jelovnik/subtemplates/mealForm.html' %}
+            {% endif %}
+
+            <button id="addMealTypeBtn" class="addMealTypeBtn btn btn-success" onclick="addNewMealType(this)">Dodaj meni</button>
+        </div>
+
+        <div class="col-lg menu-day" id="cet-menu-day">
+            <h4>Četvrtak, <span id="cet"></span></h4>
+
+            {% if mealTypes4 %}
+                {% for mealType in mealTypes4 %}
+                    {% include 'jelovnik/subtemplates/meal.html' %}
+                {% endfor %}
+            {% else %}
+                {% include 'jelovnik/subtemplates/mealForm.html' %}
+            {% endif %}
+
+            <button id="addMealTypeBtn" class="addMealTypeBtn btn btn-success" onclick="addNewMealType(this)">Dodaj meni</button>
+        </div>
+
+        <div class="col-lg menu-day" id="pet-menu-day">
+            <h4>Petak, <span id="pet"></span></h4>
+
+            {% if mealTypes5 %}
+                {% for mealType in mealTypes5 %}
+                    {% include 'jelovnik/subtemplates/meal.html' %}
+                {% endfor %}
+            {% else %}
+                {% include 'jelovnik/subtemplates/mealForm.html' %}
+            {% endif %}
+
+            <button id="addMealTypeBtn" class="addMealTypeBtn btn btn-success" onclick="addNewMealType(this)">Dodaj meni</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

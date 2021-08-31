@@ -1,0 +1,118 @@
+.row-menu{
+    margin: 24px;
+}
+
+.title{
+    text-align: center;
+}
+
+.time{
+    text-align: right;
+    margin-top: 16px;
+    margin-right: 24px;
+}
+
+.menu-day{
+    border: 3px solid #d3d3d3;
+    margin: 8px;
+    /*border-radius: 5px;*/
+    height: min-content;
+}
+
+.menu-form{
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #4e4f57;
+    /*border-radius: 5px;*/
+    background-color: white;
+}
+
+.menu-form input{
+    width: 100%;
+}
+
+.header{
+    border: 2px solid black;
+}
+
+.header input {
+    font-weight: bolder;
+}
+
+.Dish-list table{
+    width: 100%;
+}
+
+.Dish-list table tr td span:hover{
+    background-color: crimson;
+    transition: 0.3s;
+}
+
+.povratakBtn{
+    margin-left: 24px;
+    margin-top: 16px;
+}
+
+.delBtn{
+    display: block;
+    /*margin: 0px auto 8px auto;*/
+    margin: 0px auto 8px auto;
+}
+
+.up-downBtn{
+    margin: 0px 2px 8px 0px;
+}
+
+#submitBtn{
+    display: block;
+    margin: 24px auto 16px auto;
+}
+
+.addDishBtn{
+    display: block;
+    margin: 0px auto 0px auto;
+}
+
+.addMealTypeBtn{
+    display: block;
+    margin: 0px auto 16px auto;
+}
+
+.row-buttons{
+    margin-left: 1%;
+    margin-bottom: 4%;
+    margin-top: 1%;
+}
+
+
+
+#pon-menu-day{
+    /*background-color: #dedede;*/
+    background-color: #ffe6cc;
+    color: #414556;
+
+}
+
+#uto-menu-day{
+    /*background-color: #f0f1f0;*/
+    background-color: #ffffcc;
+    color: #414556;
+
+}
+
+#sri-menu-day{
+    background-color: #d9ffcc;
+    color: #414556;
+}
+
+#cet-menu-day{
+    background-color: #ccfff2;
+    color: #414556;
+}
+
+#pet-menu-day{
+    background-color: #ccd9ff;
+    color: #414556;
+}
+
+
